@@ -2,6 +2,11 @@
 
 Android library that show a floating button in your app screens you can drag and drop it in any location of the screen and on presse in it navigate to any location in the screen.
 
+**Sample**
+ 
+ ![Floating Shortcut button](https://github.com/mmoamenn/FloatingShortcutButton_Android/blob/master/samples/floating_example.gif)
+ 
+ 
 **Installing**
  
  Add it in your root build.gradle at the end of repositories:
