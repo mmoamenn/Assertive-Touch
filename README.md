@@ -47,9 +47,9 @@ but here your activity that button start to appear in your application
 
 And but here the activity appear when press in the button 
 
-    floatingShortcut.setHelpActivityName(HomeActivity.class);`
+    floatingShortcut.setHelpActivityName(HomeActivity.class);
 
 button icon and the background color 
 
-    floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);`
+    floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);
 
