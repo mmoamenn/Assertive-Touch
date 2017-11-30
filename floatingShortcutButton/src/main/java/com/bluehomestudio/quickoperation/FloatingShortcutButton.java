@@ -3,13 +3,11 @@ package com.bluehomestudio.quickoperation;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,9 +21,9 @@ import android.widget.ImageView;
  * Created by mohamedmoamen on 11/29/17.
  */
 
-class QuickOperationButton implements View.OnTouchListener {
+class FloatingShortcutButton implements View.OnTouchListener {
 
-    private static QuickOperationButton instance = null;
+    private static FloatingShortcutButton instance = null;
     private Context mContext;
     private WindowManager windowManager;
     private WindowManager.LayoutParams layoutParams;
@@ -40,7 +38,7 @@ class QuickOperationButton implements View.OnTouchListener {
      *
      * @param context caller context
      */
-    private QuickOperationButton(Context context) {
+    private FloatingShortcutButton(Context context) {
         mContext = context;
         setupView();
     }
@@ -48,11 +46,11 @@ class QuickOperationButton implements View.OnTouchListener {
     /**
      * Single tone quick operation button
      */
-    static QuickOperationButton getInstance(Context context) {
+    static FloatingShortcutButton getInstance(Context context) {
 
-        synchronized (QuickOperationButton.class) {
+        synchronized (FloatingShortcutButton.class) {
             if (instance == null) {
-                instance = new QuickOperationButton(context);
+                instance = new FloatingShortcutButton(context);
             }
         }
         return instance;

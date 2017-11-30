@@ -1,1 +1,1 @@
-include ':app', ':quickoperationbutton'
+include ':app', ':floatingShortcutButton'

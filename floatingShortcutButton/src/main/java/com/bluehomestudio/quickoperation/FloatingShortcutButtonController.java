@@ -11,18 +11,18 @@ import android.util.Log;
  * Created by mohamedmoamen on 11/30/17.
  */
 
-public class QuickButtonController implements Application.ActivityLifecycleCallbacks {
+public class FloatingShortcutButtonController implements Application.ActivityLifecycleCallbacks {
 
-    private QuickOperationButton quickOperationButton;
+    private FloatingShortcutButton floatingShortcutButton;
     private String startActivityName, helpActivityName;
     private int activityCounter;
     private Context mContext;
 
-    public QuickButtonController(Application application) {
+    public FloatingShortcutButtonController(Application application) {
         application.registerActivityLifecycleCallbacks(this);
 
         mContext = application;
-        quickOperationButton = QuickOperationButton.getInstance(application);
+        floatingShortcutButton = FloatingShortcutButton.getInstance(application);
     }
 
     @Override
@@ -39,18 +39,18 @@ public class QuickButtonController implements Application.ActivityLifecycleCallb
     public void onActivityResumed(Activity activity) {
 
         if (helpActivityName == null && startActivityName == null) {
-            Log.e("QuickButtonController", "Help activity and start activity could not be null");
+            Log.e("FloatingShortcutButtonController", "Help activity and start activity could not be null");
             return;
         }
 
         //hide button when open quick operation
         if (helpActivityName.equals(activity.getClass().getName())) {
-            quickOperationButton.hideQuickButton();
+            floatingShortcutButton.hideQuickButton();
         }
 
         //show quick button
         if (startActivityName.equals(activity.getClass().getName())) {
-            quickOperationButton.showQuickButton();
+            floatingShortcutButton.showQuickButton();
         }
 
         activityCounter++;
@@ -60,13 +60,13 @@ public class QuickButtonController implements Application.ActivityLifecycleCallb
     public void onActivityPaused(Activity activity) {
 
         if (helpActivityName == null && startActivityName == null) {
-            Log.e("QuickButtonController", "Help activity and start activity could not be null");
+            Log.e("FloatingShortcutButtonController", "Help activity and start activity could not be null");
             return;
         }
 
         //show button when close quick operation
         if (helpActivityName.equals(activity.getClass().getName())) {
-            quickOperationButton.showQuickButton();
+            floatingShortcutButton.showQuickButton();
         }
 
         activityCounter--;
@@ -77,7 +77,7 @@ public class QuickButtonController implements Application.ActivityLifecycleCallb
 
         //hide quick button when application closed
         if (activityCounter == 0) {
-            quickOperationButton.hideQuickButton();
+            floatingShortcutButton.hideQuickButton();
         }
 
     }
@@ -110,10 +110,10 @@ public class QuickButtonController implements Application.ActivityLifecycleCallb
      */
     public void setHelpActivityName(Class<?> cls) {
         this.helpActivityName = cls.getName();
-        quickOperationButton.setHelpActivityIntent(new Intent(mContext, cls));
+        floatingShortcutButton.setHelpActivityIntent(new Intent(mContext, cls));
     }
 
     public void setButtonIcon(int buttonIcon , int background) {
-        quickOperationButton.setButtonIcon(buttonIcon , background);
+        floatingShortcutButton.setButtonIcon(buttonIcon , background);
     }
 }

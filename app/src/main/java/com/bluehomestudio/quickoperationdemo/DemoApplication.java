@@ -1,11 +1,9 @@
 package com.bluehomestudio.quickoperationdemo;
 
 import android.app.Application;
-import android.content.ComponentCallbacks2;
-import android.content.Intent;
 import android.graphics.Color;
 
-import com.bluehomestudio.quickoperation.QuickButtonController;
+import com.bluehomestudio.quickoperation.FloatingShortcutButtonController;
 
 /**
  * Created by mohamedmoamen on 11/30/17.
@@ -17,10 +15,10 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        QuickButtonController quickButtonController = new QuickButtonController(this);
-        quickButtonController.setStartActivityName(LoginActivity.class);
-        quickButtonController.setHelpActivityName(HelpActivity.class);
-        quickButtonController.setButtonIcon(R.drawable.help , Color.WHITE);
+        FloatingShortcutButtonController floatingShortcutButtonController = new FloatingShortcutButtonController(this);
+        floatingShortcutButtonController.setStartActivityName(LoginActivity.class);
+        floatingShortcutButtonController.setHelpActivityName(HelpActivity.class);
+        floatingShortcutButtonController.setButtonIcon(R.drawable.help , Color.WHITE);
     }
 
 
