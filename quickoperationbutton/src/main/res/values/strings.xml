@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">QuickOperation</string>
+    <string name="quick_operation_button">Quick Operation Button</string>
+</resources>
