@@ -39,7 +39,7 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
     public void onActivityResumed(Activity activity) {
 
         if (helpActivityName == null && startActivityName == null) {
-            Log.e("FloatingShortcutButtonController", "Help activity and start activity could not be null");
+            Log.e("FloatingShortcutButton", "Help activity and start activity could not be null");
             return;
         }
 
@@ -60,7 +60,7 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
     public void onActivityPaused(Activity activity) {
 
         if (helpActivityName == null && startActivityName == null) {
-            Log.e("FloatingShortcutButtonController", "Help activity and start activity could not be null");
+            Log.e("FloatingShortcutButton", "Help activity and start activity could not be null");
             return;
         }
 
