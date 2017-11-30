@@ -30,7 +30,6 @@ It's very simple type this code in your application class.
 
 it takes instance of your application class 
 
-`public class DemoApplication extends Application {
 
     @Override
     public void onCreate() {
@@ -40,17 +39,17 @@ it takes instance of your application class
       
       ....The rest of configurations....
       
-      }`
+      }
 
 but here your activity that button start to appear in your application 
 
-`floatingShortcut.setStartActivityName(LoginActivity.class);`
+    floatingShortcut.setStartActivityName(LoginActivity.class);
 
 And but here the activity appear when press in the button 
 
-`floatingShortcut.setHelpActivityName(HomeActivity.class);`
+    floatingShortcut.setHelpActivityName(HomeActivity.class);`
 
 button icon and the background color 
 
-`floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);`
+    floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);`
 
