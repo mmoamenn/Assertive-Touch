@@ -3,7 +3,13 @@ package com.bluehomestudio.quickoperation;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -90,6 +96,7 @@ class QuickOperationButton implements View.OnTouchListener {
                 PixelFormat.TRANSLUCENT
         );
         layoutParams.gravity = Gravity.TOP | Gravity.START;
+        layoutParams.alpha = 0.6f;
         layoutParams.x = 30;
         layoutParams.y = 30;
 
@@ -116,7 +123,7 @@ class QuickOperationButton implements View.OnTouchListener {
         }
     }
 
-    private final int MINI_DISTANCE = 100;
+    private final int MINI_DISTANCE = 25;
     private int initialX;
     private int initialY;
     private float initialTouchX;
@@ -142,6 +149,7 @@ class QuickOperationButton implements View.OnTouchListener {
                 layoutParams.x = initialX + (int) (event.getRawX() - initialTouchX);
                 layoutParams.y = initialY + (int) (event.getRawY() - initialTouchY);
                 windowManager.updateViewLayout(v, layoutParams);
+
                 return true;
 
             case MotionEvent.ACTION_UP:
@@ -187,5 +195,19 @@ class QuickOperationButton implements View.OnTouchListener {
      */
     void setHelpActivityIntent(Intent helpActivityIntent) {
         this.helpActivityIntent = helpActivityIntent;
+    }
+
+    void setButtonIcon(int buttonIcon , int backgroundColor) {
+        quickActionButton.setImageResource(buttonIcon);
+        quickActionButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+        Drawable mDrawable = mContext.getResources().getDrawable(R.drawable.circle_button);
+        mDrawable.setColorFilter(new PorterDuffColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN));
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            quickActionButton.setBackgroundDrawable(mDrawable);
+        } else {
+            quickActionButton.setBackground(mDrawable);
+        }
+
     }
 }

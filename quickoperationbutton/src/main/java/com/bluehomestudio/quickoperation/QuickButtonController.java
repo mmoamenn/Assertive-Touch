@@ -112,4 +112,8 @@ public class QuickButtonController implements Application.ActivityLifecycleCallb
         this.helpActivityName = cls.getName();
         quickOperationButton.setHelpActivityIntent(new Intent(mContext, cls));
     }
+
+    public void setButtonIcon(int buttonIcon , int background) {
+        quickOperationButton.setButtonIcon(buttonIcon , background);
+    }
 }

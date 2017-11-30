@@ -3,6 +3,7 @@ package com.bluehomestudio.quickoperationdemo;
 import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.Intent;
+import android.graphics.Color;
 
 import com.bluehomestudio.quickoperation.QuickButtonController;
 
@@ -19,6 +20,7 @@ public class DemoApplication extends Application {
         QuickButtonController quickButtonController = new QuickButtonController(this);
         quickButtonController.setStartActivityName(LoginActivity.class);
         quickButtonController.setHelpActivityName(HelpActivity.class);
+        quickButtonController.setButtonIcon(R.drawable.help , Color.WHITE);
     }
 
 
