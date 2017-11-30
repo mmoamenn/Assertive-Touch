@@ -39,13 +39,13 @@ it takes instance of your application class
 
 but here your activity that button start to appear in your application 
 
-`floatingShortcutButtonController.setStartActivityName(LoginActivity.class);`
+`floatingShortcut.setStartActivityName(LoginActivity.class);`
 
 And but here the activity appear when press in the button 
 
-`floatingShortcutButtonController.setHelpActivityName(HomeActivity.class);`
+`floatingShortcut.setHelpActivityName(HomeActivity.class);`
 
 button icon and the background color 
 
-`floatingShortcutButtonController.setButtonIcon(R.drawable.default_user , Color.WHITE);`
+`floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);`
 
