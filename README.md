@@ -38,7 +38,7 @@ it takes instance of your application class
         
       FloatingShortcutButtonController floatingShortcut = new FloatingShortcutButtonController(this);
       
-      ....rest of configurations....
+      ....The rest of configurations....
       
       }`
 
