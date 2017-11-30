@@ -1,6 +1,6 @@
 # FloatingShortcutButton_Android
 
-Android library that show a floating button in your app screens you can drag and drop it in any location of the screen and on press it navigate to any location in the application.
+Android library shows a floating button in the app screen, you can drag and drop the button in any place of the screen and on press it navigate to any place in the app.
 
 **Sample**
  
