@@ -11,19 +11,38 @@ import android.util.Log;
  * Created by mohamedmoamen on 11/30/17.
  */
 
-public class FloatingShortcutButtonController implements Application.ActivityLifecycleCallbacks {
+public class FSBController implements Application.ActivityLifecycleCallbacks {
 
+    private static FSBController instance = null;
     private FloatingShortcutButton floatingShortcutButton;
     private String startActivityName, helpActivityName;
     private int activityCounter;
     private Context mContext;
 
-    public FloatingShortcutButtonController(Application application) {
-        application.registerActivityLifecycleCallbacks(this);
 
+    private FSBController(Application application) {
+
+        application.registerActivityLifecycleCallbacks(this);
         mContext = application;
         floatingShortcutButton = FloatingShortcutButton.getInstance(application);
     }
+
+    public static void setUpInstance(Application application) {
+
+        if (instance == null) {
+            instance = new FSBController(application);
+        }
+    }
+
+
+    public static FSBController getInstance() {
+        return instance;
+    }
+
+    public static FloatingShortcutButton getFSB() {
+        return instance.floatingShortcutButton;
+    }
+
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -39,18 +58,19 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
     public void onActivityResumed(Activity activity) {
 
         if (helpActivityName == null && startActivityName == null) {
+
             Log.e("FloatingShortcutButton", "Help activity and start activity could not be null");
             return;
         }
 
         //hide button when open quick operation
         if (helpActivityName.equals(activity.getClass().getName())) {
-            floatingShortcutButton.hideQuickButton();
+            floatingShortcutButton.hide();
         }
 
         //show quick button
         if (startActivityName.equals(activity.getClass().getName())) {
-            floatingShortcutButton.showQuickButton();
+            floatingShortcutButton.show();
         }
 
         activityCounter++;
@@ -60,13 +80,14 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
     public void onActivityPaused(Activity activity) {
 
         if (helpActivityName == null && startActivityName == null) {
+
             Log.e("FloatingShortcutButton", "Help activity and start activity could not be null");
             return;
         }
 
         //show button when close quick operation
         if (helpActivityName.equals(activity.getClass().getName())) {
-            floatingShortcutButton.showQuickButton();
+            floatingShortcutButton.show();
         }
 
         activityCounter--;
@@ -77,7 +98,7 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
 
         //hide quick button when application closed
         if (activityCounter == 0) {
-            floatingShortcutButton.hideQuickButton();
+            floatingShortcutButton.hide();
         }
 
     }
@@ -98,7 +119,7 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
      *
      * @param cls activity class
      */
-    public void setStartActivityName(Class<?> cls) {
+    public void setStartActivity(Class<?> cls) {
         this.startActivityName = cls.getName();
     }
 
@@ -108,12 +129,16 @@ public class FloatingShortcutButtonController implements Application.ActivityLif
      *
      * @param cls activity class
      */
-    public void setHelpActivityName(Class<?> cls) {
+    public void setTargetActivity(Class<?> cls) {
         this.helpActivityName = cls.getName();
-        floatingShortcutButton.setHelpActivityIntent(new Intent(mContext, cls));
+        floatingShortcutButton.setTargetActivity(new Intent(mContext, cls));
     }
 
-    public void setButtonIcon(int buttonIcon , int background) {
-        floatingShortcutButton.setButtonIcon(buttonIcon , background);
+    public void setIcon(int buttonIcon) {
+        floatingShortcutButton.setIcon(buttonIcon);
+    }
+
+    public void setBackground(int background) {
+        floatingShortcutButton.setBackgroundColor(background);
     }
 }

@@ -3,7 +3,7 @@ package com.bluehomestudio.quickoperationdemo;
 import android.app.Application;
 import android.graphics.Color;
 
-import com.bluehomestudio.quickoperation.FloatingShortcutButtonController;
+import com.bluehomestudio.quickoperation.FSBController;
 
 /**
  * Created by mohamedmoamen on 11/30/17.
@@ -15,11 +15,12 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        FloatingShortcutButtonController floatingShortcutButtonController = new FloatingShortcutButtonController(this);
-        floatingShortcutButtonController.setStartActivityName(LoginActivity.class);
-        floatingShortcutButtonController.setHelpActivityName(HelpActivity.class);
-        floatingShortcutButtonController.setButtonIcon(R.drawable.help , Color.WHITE);
-    }
+        FSBController.setUpInstance(this);
+        FSBController.getInstance().setStartActivity(LoginActivity.class);
+        FSBController.getInstance().setTargetActivity(HelpActivity.class);
+        FSBController.getInstance().setIcon(R.drawable.help);
+        FSBController.getInstance().setBackground(Color.WHITE);
 
+    }
 
 }

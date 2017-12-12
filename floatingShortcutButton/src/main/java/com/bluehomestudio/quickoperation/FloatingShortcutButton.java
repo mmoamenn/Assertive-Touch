@@ -32,7 +32,6 @@ class FloatingShortcutButton implements View.OnTouchListener {
     private ImageView quickActionButton;
     private Intent helpActivityIntent;
 
-
     /**
      * private constructor
      *
@@ -97,28 +96,6 @@ class FloatingShortcutButton implements View.OnTouchListener {
         layoutParams.alpha = 0.6f;
         layoutParams.x = 30;
         layoutParams.y = 30;
-
-
-    }
-
-
-    /**
-     * Function to show quick button
-     */
-    void showQuickButton() {
-        if (!isAttached) {
-            windowManager.addView(quickActionButtonLayout, layoutParams);
-        }
-
-    }
-
-    /**
-     * Function to hide quick button
-     */
-    void hideQuickButton() {
-        if (isAttached) {
-            windowManager.removeViewImmediate(quickActionButtonLayout);
-        }
     }
 
     private final int MINI_DISTANCE = 25;
@@ -186,26 +163,48 @@ class FloatingShortcutButton implements View.OnTouchListener {
 
     }
 
-    /**
-     * quick operation activity
-     *
-     * @param helpActivityIntent help activity
-     */
-    void setHelpActivityIntent(Intent helpActivityIntent) {
-        this.helpActivityIntent = helpActivityIntent;
+    void show() {
+        if (!isAttached) {
+            windowManager.addView(quickActionButtonLayout, layoutParams);
+        }
+
     }
 
-    void setButtonIcon(int buttonIcon , int backgroundColor) {
-        quickActionButton.setImageResource(buttonIcon);
-        quickActionButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+    void hide() {
+        if (isAttached) {
+            windowManager.removeViewImmediate(quickActionButtonLayout);
+        }
+    }
 
+    void setSize(int height, int width) {
+        layoutParams.height = height;
+        layoutParams.width = width;
+        windowManager.updateViewLayout(quickActionButton, layoutParams);
+    }
+
+    void setIcon(int icon) {
+        quickActionButton.setImageResource(icon);
+        quickActionButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+    }
+
+    void setBackgroundColor(int color){
         Drawable mDrawable = mContext.getResources().getDrawable(R.drawable.circle_button);
-        mDrawable.setColorFilter(new PorterDuffColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN));
+        mDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             quickActionButton.setBackgroundDrawable(mDrawable);
         } else {
             quickActionButton.setBackground(mDrawable);
         }
-
     }
+
+    /**
+     * quick operation activity
+     *
+     * @param helpActivityIntent help activity
+     */
+    void setTargetActivity(Intent helpActivityIntent) {
+        this.helpActivityIntent = helpActivityIntent;
+    }
+
 }
+
