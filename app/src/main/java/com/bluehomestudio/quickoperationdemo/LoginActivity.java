@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.bluehomestudio.quickoperation.FSBHelper;
+import com.bluehomestudio.quickoperation.FSButton;
+
 /**
  * Created by mohamedmoamen on 11/30/17.
  */
@@ -15,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FSButton.getInstance().show();
     }
 
 

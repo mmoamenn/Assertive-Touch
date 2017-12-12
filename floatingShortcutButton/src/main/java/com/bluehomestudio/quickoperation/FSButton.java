@@ -1,6 +1,7 @@
 package com.bluehomestudio.quickoperation;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -9,6 +10,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -21,36 +23,47 @@ import android.widget.ImageView;
  * Created by mohamedmoamen on 11/29/17.
  */
 
-class FloatingShortcutButton implements View.OnTouchListener {
+public class FSButton implements View.OnTouchListener {
 
-    private static FloatingShortcutButton instance = null;
-    private Context mContext;
+    private static FSButton instance = null;
+    private Application mApp;
     private WindowManager windowManager;
     private WindowManager.LayoutParams layoutParams;
     private View quickActionButtonLayout;
     private boolean isAttached;
     private ImageView quickActionButton;
-    private Intent helpActivityIntent;
+    private Class<?> mTargetCls;
 
     /**
      * private constructor
      *
-     * @param context caller context
+     * @param app application class
      */
-    private FloatingShortcutButton(Context context) {
-        mContext = context;
+    private FSButton(Application app) {
+        mApp = app;
+
+        //attach ActivityLifecycleCallbacks
+        new FSBHelper(app, this);
+
+        //configure button
         setupView();
     }
 
     /**
      * Single tone quick operation button
      */
-    static FloatingShortcutButton getInstance(Context context) {
+    public static void setUp(Application app) {
 
-        synchronized (FloatingShortcutButton.class) {
+        synchronized (FSButton.class) {
             if (instance == null) {
-                instance = new FloatingShortcutButton(context);
+                instance = new FSButton(app);
             }
+        }
+    }
+
+    public static FSButton getInstance() {
+        if (instance == null) {
+            Log.d("FSButton", "Please call setUp(Application app) in your application class");
         }
         return instance;
     }
@@ -61,10 +74,10 @@ class FloatingShortcutButton implements View.OnTouchListener {
     private void setupView() {
 
         DisplayMetrics metrics = new DisplayMetrics();
-        windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        windowManager = (WindowManager) mApp.getSystemService(Context.WINDOW_SERVICE);
         assert windowManager != null;
         windowManager.getDefaultDisplay().getMetrics(metrics);
-        quickActionButtonLayout = LayoutInflater.from(mContext).inflate(R.layout.quick_button_view, null);
+        quickActionButtonLayout = LayoutInflater.from(mApp).inflate(R.layout.quick_button_view, null);
 
         //check if view attached to window or not
         quickActionButtonLayout.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
@@ -150,8 +163,9 @@ class FloatingShortcutButton implements View.OnTouchListener {
             isTransplant = false;
 
             //open activity from quick action
-            helpActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(helpActivityIntent);
+            Intent intent = new Intent(mApp, mTargetCls);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mApp.startActivity(intent);
 
         } else {
 
@@ -163,32 +177,32 @@ class FloatingShortcutButton implements View.OnTouchListener {
 
     }
 
-    void show() {
+    public void show() {
         if (!isAttached) {
             windowManager.addView(quickActionButtonLayout, layoutParams);
         }
 
     }
 
-    void hide() {
+    public void hide() {
         if (isAttached) {
             windowManager.removeViewImmediate(quickActionButtonLayout);
         }
     }
 
-    void setSize(int height, int width) {
+    public void setSize(int height, int width) {
         layoutParams.height = height;
         layoutParams.width = width;
         windowManager.updateViewLayout(quickActionButton, layoutParams);
     }
 
-    void setIcon(int icon) {
+    public void setIcon(int icon) {
         quickActionButton.setImageResource(icon);
         quickActionButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
 
-    void setBackgroundColor(int color){
-        Drawable mDrawable = mContext.getResources().getDrawable(R.drawable.circle_button);
+    public void setBackgroundColor(int color) {
+        Drawable mDrawable = mApp.getResources().getDrawable(R.drawable.circle_button);
         mDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             quickActionButton.setBackgroundDrawable(mDrawable);
@@ -197,13 +211,12 @@ class FloatingShortcutButton implements View.OnTouchListener {
         }
     }
 
-    /**
-     * quick operation activity
-     *
-     * @param helpActivityIntent help activity
-     */
-    void setTargetActivity(Intent helpActivityIntent) {
-        this.helpActivityIntent = helpActivityIntent;
+    public void setTargetClass(Class<?> targetCls) {
+        mTargetCls = targetCls;
+    }
+
+    protected String getTargetName() {
+        return mTargetCls.getName();
     }
 
 }

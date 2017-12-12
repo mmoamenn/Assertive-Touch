@@ -1,18 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp"
     tools:context="com.bluehomestudio.quickoperationdemo.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/b_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDemoButtonsPressed"
+            android:text="@string/help"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/b_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDemoButtonsPressed"
+            android:text="@string/weather"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/b_calculator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDemoButtonsPressed"
+            android:text="@string/calculator"
+            tools:ignore="ButtonStyle" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/b_150"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDemoButtonsPressed"
+            android:text="150 x 150"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/b_200"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDemoButtonsPressed"
+            android:text="200 x 200"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/b_300"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDemoButtonsPressed"
+            android:text="300 x 300"
+            tools:ignore="ButtonStyle" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

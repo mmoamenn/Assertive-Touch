@@ -3,7 +3,8 @@ package com.bluehomestudio.quickoperationdemo;
 import android.app.Application;
 import android.graphics.Color;
 
-import com.bluehomestudio.quickoperation.FSBController;
+import com.bluehomestudio.quickoperation.FSBHelper;
+import com.bluehomestudio.quickoperation.FSButton;
 
 /**
  * Created by mohamedmoamen on 11/30/17.
@@ -15,11 +16,10 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        FSBController.setUpInstance(this);
-        FSBController.getInstance().setStartActivity(LoginActivity.class);
-        FSBController.getInstance().setTargetActivity(HelpActivity.class);
-        FSBController.getInstance().setIcon(R.drawable.help);
-        FSBController.getInstance().setBackground(Color.WHITE);
+        FSButton.setUp(this) ;
+        FSButton.getInstance().setTargetClass(HelpActivity.class);
+        FSButton.getInstance().setIcon(R.drawable.help);
+        FSButton.getInstance().setBackgroundColor(Color.WHITE);
 
     }
 
