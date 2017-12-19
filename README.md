@@ -15,10 +15,11 @@ Assertive Touch is a library that lets you create a floating button which shows 
  	
  Step 2. Add the dependency
  
+ ```groovy
  	dependencies {
  		compile 'com.github.mmoamenn:FloatingShortcutButton_Android:1.0.1'
  	}
-
+ ```
 **How to use in your application**
 
 Add the following few lines in your application class.
