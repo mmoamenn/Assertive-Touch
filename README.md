@@ -1,4 +1,4 @@
-# AssertiveTouch_Android
+# Assertive Touch in Android
 
 Assertive Touch is a library that lets you create a floating button which shows in your app screens. You can drag and drop it anywhere in your application and you can configure it on runtime to navigate through your predefined shortcuts. 
 
