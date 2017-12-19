@@ -16,7 +16,7 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        FSButton.setUp(this) ;
+        FSButton.setup(this) ;
         FSButton.getInstance().setTargetClass(HelpActivity.class);
         FSButton.getInstance().setIcon(R.drawable.help);
         FSButton.getInstance().setBackgroundColor(Color.WHITE);
