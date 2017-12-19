@@ -38,10 +38,13 @@ public class DemoApplication extends Application {
  ```
  
  To start showing the floating button through the application, use the following line.
- 
- `FSButton.getInstance().show();`
+ ```java
+ FSButton.getInstance().show();
+```
  
  To make the floating button disppear through the application, use the following line.
  
-  `FSButton.getInstance().hide();`
+  ```java
+  FSButton.getInstance().hide();
+ ```
 
