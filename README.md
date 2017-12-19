@@ -22,6 +22,7 @@ Assertive Touch is a library that lets you create a floating button which shows 
 **How to use in your application**
 
 Add the following few lines in your application class.
+
 ```java
 public class DemoApplication extends Application {
 
@@ -34,7 +35,7 @@ public class DemoApplication extends Application {
         FSButton.getInstance().setIcon(R.drawable.help);
         FSButton.getInstance().setBackgroundColor(Color.WHITE);
       }
-      ```
+ ```
  
  To start showing the floating button through the application, use the following line.
  
