@@ -16,6 +16,7 @@ public class FSBHelper implements Application.ActivityLifecycleCallbacks {
 
 
     public FSBHelper(Application application, FSButton fsButton) {
+
         application.registerActivityLifecycleCallbacks(this);
         mFsButton = fsButton;
     }
