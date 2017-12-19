@@ -1,6 +1,6 @@
-# FloatingShortcutButton_Android
+# AssertiveTouch_Android
 
-Android library that show a floating button in your app screens you can drag and drop it in any location of the screen and on presse in it navigate to any location in the screen.
+Assertive Touch is a library that lets you create a floating button which shows in your app screens. You can drag and drop it anywhere in your application and you can configure it on runtime to navigate through your predefined shortcuts. 
 
 **Installing**
  
@@ -21,9 +21,7 @@ Android library that show a floating button in your app screens you can drag and
 
 **How to use in your application**
 
-It's very simple type this code in your application class.
-
-it takes instance of your application class 
+Add the following few lines in your application class.
 
 `public class DemoApplication extends Application {
 
@@ -31,21 +29,17 @@ it takes instance of your application class
     public void onCreate() {
         super.onCreate();
         
-      FloatingShortcutButtonController floatingShortcut = new FloatingShortcutButtonController(this);
-      
-      ....rest of configurations....
-      
+        FSButton.setup(this) ;
+        FSButton.getInstance().setTargetClass(HelpActivity.class);
+        FSButton.getInstance().setIcon(R.drawable.help);
+        FSButton.getInstance().setBackgroundColor(Color.WHITE);
       }`
-
-but here your activity that button start to appear in your application 
-
-`floatingShortcut.setStartActivityName(LoginActivity.class);`
-
-And but here the activity appear when press in the button 
-
-`floatingShortcut.setHelpActivityName(HomeActivity.class);`
-
-button icon and the background color 
-
-`floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);`
+ 
+ To start showing the floating button through the application, use the following line.
+ 
+ `FSButton.getInstance().show();`
+ 
+ To make the floating button disppear through the application, use the following line.
+ 
+  `FSButton.getInstance().hide();`
 
