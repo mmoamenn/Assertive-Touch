@@ -5,7 +5,7 @@ Assertive Touch is a library that lets you create a floating button which shows 
 
 **Sample**
  
- ![Floating Shortcut button](https://github.com/mmoamenn/FloatingShortcutButton_Android/blob/master/samples/floating_example.gif)
+ ![Floating Shortcut button](https://github.com/mmoamenn/FloatingShortcutButton_Android/blob/master/samples/sample.gif)
 
 **Installing**
  
