@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:gravity="center"
+    android:orientation="vertical"
     android:padding="15dp">
 
     <Button
         android:id="@+id/b_login"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:onClick="onLoginPressed"
-        android:text="Login"/>
+        android:text="Next screen"
+        android:textSize="12sp" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/b_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="onLoginPressed"
+        android:text="Help Screen"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/b_hide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="onLoginPressed"
+        android:text="Hide"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/b_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="onLoginPressed"
+        android:text="Show"
+        android:textSize="12sp" />
+
+
+</LinearLayout>

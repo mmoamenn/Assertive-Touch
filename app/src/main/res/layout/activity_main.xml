@@ -22,6 +22,7 @@
             android:layout_weight="1"
             android:onClick="onDemoButtonsPressed"
             android:text="@string/help"
+            android:textSize="12sp"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -31,6 +32,7 @@
             android:layout_weight="1"
             android:onClick="onDemoButtonsPressed"
             android:text="@string/weather"
+            android:textSize="12sp"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -40,6 +42,7 @@
             android:layout_weight="1"
             android:onClick="onDemoButtonsPressed"
             android:text="@string/calculator"
+            android:textSize="12sp"
             tools:ignore="ButtonStyle" />
 
 
@@ -56,6 +59,7 @@
             android:layout_weight="1"
             android:onClick="onDemoButtonsPressed"
             android:text="150 x 150"
+            android:textSize="12sp"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -65,6 +69,7 @@
             android:layout_weight="1"
             android:onClick="onDemoButtonsPressed"
             android:text="200 x 200"
+            android:textSize="12sp"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -74,6 +79,7 @@
             android:layout_weight="1"
             android:onClick="onDemoButtonsPressed"
             android:text="300 x 300"
+            android:textSize="12sp"
             tools:ignore="ButtonStyle" />
 
 

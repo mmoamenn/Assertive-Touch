@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AssertiveTouchButton/floatingShortcutButton.iml" filepath="$PROJECT_DIR$/AssertiveTouchButton/floatingShortcutButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/FloatingShortcutButton_Android.iml" filepath="$PROJECT_DIR$/FloatingShortcutButton_Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/QuickOperationButton_Android.iml" filepath="$PROJECT_DIR$/QuickOperationButton_Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/floatingShortcutButton/floatingShortcutButton.iml" filepath="$PROJECT_DIR$/floatingShortcutButton/floatingShortcutButton.iml" />
-      <module fileurl="file://$PROJECT_DIR$/floatingShortcutButton/floatingShortcutButton.iml" filepath="$PROJECT_DIR$/floatingShortcutButton/floatingShortcutButton.iml" />
     </modules>
   </component>
 </project>

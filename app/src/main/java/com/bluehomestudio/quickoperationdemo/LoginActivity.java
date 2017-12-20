@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.bluehomestudio.quickoperation.FSBHelper;
-import com.bluehomestudio.quickoperation.FSButton;
+import com.bluehomestudio.quickoperation.ATButton;
 
 /**
  * Created by mohamedmoamen on 11/30/17.
@@ -18,12 +17,20 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FSButton.getInstance().show();
+        ATButton.getInstance().show();
     }
 
 
     public void onLoginPressed(View view) {
-        startActivity(new Intent(this, MainActivity.class));
+        if(view.getId() ==  R.id.b_login){
+            startActivity(new Intent(this, MainActivity.class));
+        }else if(view.getId() ==  R.id.b_help){
+            startActivity(new Intent(this, HelpActivity.class));
+        }else if(view.getId() ==  R.id.b_hide){
+            ATButton.getInstance().hide();
+        }else if(view.getId() == R.id.b_show){
+            ATButton.getInstance().show();
+        }
     }
 
 }

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.bluehomestudio.quickoperation.FSButton;
+import com.bluehomestudio.quickoperation.ATButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,29 +17,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDemoButtonsPressed(View view) {
 
+        if(!ATButton.getInstance().isViewAttached()){
+            return ;
+        }
+
         switch (view.getId()) {
             case R.id.b_help:
-                FSButton.getInstance().setIcon(R.drawable.help);
+                ATButton.getInstance().setIcon(R.drawable.help);
                 break;
 
             case R.id.b_weather:
-                FSButton.getInstance().setIcon(R.drawable.clouds);
+                ATButton.getInstance().setIcon(R.drawable.clouds);
                 break;
 
             case R.id.b_calculator:
-                FSButton.getInstance().setIcon(R.drawable.calculator);
+                ATButton.getInstance().setIcon(R.drawable.calculator);
                 break;
 
             case R.id.b_150:
-                FSButton.getInstance().setSize(150 , 150);
+                ATButton.getInstance().setSize(150 , 150);
                 break;
 
             case R.id.b_200:
-                FSButton.getInstance().setSize(200 , 200);
+                ATButton.getInstance().setSize(200 , 200);
                 break;
 
             case R.id.b_300:
-                FSButton.getInstance().setSize(300 , 300);
+                ATButton.getInstance().setSize(300 , 300);
                 break;
 
         }

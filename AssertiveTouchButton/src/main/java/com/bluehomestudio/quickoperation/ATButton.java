@@ -23,9 +23,11 @@ import android.widget.ImageView;
  * Created by mohamedmoamen on 11/29/17.
  */
 
-public class FSButton implements View.OnTouchListener {
+public class ATButton implements View.OnTouchListener {
 
-    private static FSButton instance = null;
+    @SuppressLint("StaticFieldLeak")
+    private static ATButton instance = null;
+    private ATButtonHelper ATButtonHelper;
     private Application mApp;
     private WindowManager windowManager;
     private WindowManager.LayoutParams layoutParams;
@@ -39,11 +41,11 @@ public class FSButton implements View.OnTouchListener {
      *
      * @param app application class
      */
-    private FSButton(Application app) {
+    private ATButton(Application app) {
         mApp = app;
 
         //attach ActivityLifecycleCallbacks
-        new FSBHelper(app, this);
+        ATButtonHelper = new ATButtonHelper(app, this);
 
         //configure button
         setupView();
@@ -54,16 +56,16 @@ public class FSButton implements View.OnTouchListener {
      */
     public static void setup(Application app) {
 
-        synchronized (FSButton.class) {
+        synchronized (ATButton.class) {
             if (instance == null) {
-                instance = new FSButton(app);
+                instance = new ATButton(app);
             }
         }
     }
 
-    public static FSButton getInstance() {
+    public static ATButton getInstance() {
         if (instance == null) {
-            Log.d("FSButton", "Please call setUp(Application app) in your application class");
+            Log.d("ATButton", "Please call setUp(Application app) in your application class");
         }
         return instance;
     }
@@ -177,17 +179,28 @@ public class FSButton implements View.OnTouchListener {
 
     }
 
+    void tempHide() {
+        if (isAttached) {
+            windowManager.removeView(quickActionButtonLayout);
+        }
+    }
+
     public void show() {
         if (!isAttached) {
             windowManager.addView(quickActionButtonLayout, layoutParams);
+            ATButtonHelper.changeStatus(true);
         }
-
     }
 
     public void hide() {
         if (isAttached) {
-            windowManager.removeViewImmediate(quickActionButtonLayout);
+            windowManager.removeView(quickActionButtonLayout);
+            ATButtonHelper.changeStatus(false);
         }
+    }
+
+    public boolean isViewAttached() {
+        return isAttached;
     }
 
     public void setSize(int height, int width) {
@@ -202,8 +215,10 @@ public class FSButton implements View.OnTouchListener {
     }
 
     public void setBackgroundColor(int color) {
+
         Drawable mDrawable = mApp.getResources().getDrawable(R.drawable.circle_button);
         mDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             quickActionButton.setBackgroundDrawable(mDrawable);
         } else {
@@ -215,7 +230,7 @@ public class FSButton implements View.OnTouchListener {
         mTargetCls = targetCls;
     }
 
-    protected String getTargetName() {
+    String getTargetName() {
         return mTargetCls.getName();
     }
 

@@ -2,23 +2,27 @@ package com.bluehomestudio.quickoperation;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
 
 /**
  * Created by mohamedmoamen on 11/30/17.
  */
 
-public class FSBHelper implements Application.ActivityLifecycleCallbacks {
+public class ATButtonHelper implements Application.ActivityLifecycleCallbacks {
 
     private int activityCounter;
-    private FSButton mFsButton;
+    private ATButton mATButton;
+    private boolean isShow, isBackground;
 
 
-    public FSBHelper(Application application, FSButton fsButton) {
+    ATButtonHelper(Application application, ATButton ATButton) {
 
         application.registerActivityLifecycleCallbacks(this);
-        mFsButton = fsButton;
+        mATButton = ATButton;
+    }
+
+    void changeStatus(boolean isShow) {
+        this.isShow = isShow;
     }
 
 
@@ -34,10 +38,14 @@ public class FSBHelper implements Application.ActivityLifecycleCallbacks {
     public void onActivityResumed(Activity activity) {
 
         //hide button when open quick operation
-        if (mFsButton.getTargetName() != null
-                && mFsButton.getTargetName()
-                .equals(activity.getClass().getName())) {
-            mFsButton.hide();
+        if (mATButton.getTargetName() != null
+                && mATButton.getTargetName().equals(activity.getClass().getName())) {
+            mATButton.tempHide();
+        }
+
+        //reshow when come from background
+        if (isBackground && isShow) {
+            mATButton.show();
         }
 
         activityCounter++;
@@ -47,10 +55,11 @@ public class FSBHelper implements Application.ActivityLifecycleCallbacks {
     public void onActivityPaused(Activity activity) {
 
         //show button when close quick operation
-        if (mFsButton.getTargetName() != null
-                && mFsButton.getTargetName()
-                .equals(activity.getClass().getName())) {
-            mFsButton.show();
+        if (mATButton.getTargetName() != null
+                && mATButton.getTargetName().equals(activity.getClass().getName())) {
+            if (isShow) {
+                mATButton.show();
+            }
         }
 
         activityCounter--;
@@ -61,9 +70,9 @@ public class FSBHelper implements Application.ActivityLifecycleCallbacks {
 
         //hide quick button when application closed
         if (activityCounter == 0) {
-            mFsButton.hide();
+            mATButton.tempHide();
+            isBackground = true;
         }
-
     }
 
     @Override

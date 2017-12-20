@@ -1,1 +1,1 @@
-include ':app', ':floatingShortcutButton'
+include ':app', ':AssertiveTouchButton'
