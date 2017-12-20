@@ -24,7 +24,7 @@ Assertive Touch is a library that lets you create a floating button which shows 
  
  ```groovy
  	dependencies {
- 		compile 'com.github.mmoamenn:FloatingShortcutButton_Android:1.2.0'
+ 		compile 'com.github.mmoamenn:Assertive-Touch:1.2.0'
  	}
  ```
 **How to use in your application**
@@ -38,35 +38,35 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         
-        FSButton.setup(this) ;
-        FSButton.getInstance().setTargetClass(HelpActivity.class);
-        FSButton.getInstance().setIcon(R.drawable.help);
-        FSButton.getInstance().setBackgroundColor(Color.WHITE);
+        ATButton.setup(this) ;
+        ATButton.getInstance().setTargetClass(HelpActivity.class);
+        ATButton.getInstance().setIcon(R.drawable.help);
+        ATButton.getInstance().setBackgroundColor(Color.WHITE);
       }
  ```
  
  To start showing the floating button through the application, use the following line.
  
  ```java
- FSButton.getInstance().show();
+ ATButton.getInstance().show();
 ```
  
  To make the floating button disppear through the application, use the following line.
  
   ```java
-  FSButton.getInstance().hide();
+  ATButton.getInstance().hide();
  ```
  
 Change Button size 
 
 ```java
-  FSButton.getInstance().setSize(height,width);
+  ATButton.getInstance().setSize(height,width);
  ```
  
 Check button visibility
  
   ```java
-  FSButton.getInstance().isViewAttached();
+  ATButton.getInstance().isViewAttached();
  ```
 
 
