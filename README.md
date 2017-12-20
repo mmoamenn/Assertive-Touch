@@ -1,12 +1,12 @@
-# FloatingShortcutButton_Android
 
-Android library shows a floating button in the app screen, you can drag and drop the button in any place of the screen and on press it navigate to any place in the app.
+# Assertive Touch in Android
+
+Assertive Touch is a library that lets you create a floating button which shows in your app screens. You can drag and drop it anywhere in your application and you can configure it on runtime to navigate through your predefined shortcuts. 
 
 **Sample**
  
  ![Floating Shortcut button](https://github.com/mmoamenn/FloatingShortcutButton_Android/blob/master/samples/floating_example.gif)
- 
- 
+
 **Installing**
  
  Add it in your root build.gradle at the end of repositories:
@@ -20,36 +20,46 @@ Android library shows a floating button in the app screen, you can drag and drop
  	
  Step 2. Add the dependency
  
+ ```groovy
  	dependencies {
- 		compile 'com.github.mmoamenn:FloatingShortcutButton_Android:1.0.1'
+ 		compile 'com.github.mmoamenn:FloatingShortcutButton_Android:1.2.0'
  	}
-
+ ```
 **How to use in your application**
 
-It's very simple type this code in your application class.
+Add the following few lines in your application class.
 
-it takes instance of your application class 
-
+```java
+public class DemoApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
         
-      FloatingShortcutButtonController floatingShortcut = new FloatingShortcutButtonController(this);
-      
-      ....The rest of configurations....
-      
+        FSButton.setup(this) ;
+        FSButton.getInstance().setTargetClass(HelpActivity.class);
+        FSButton.getInstance().setIcon(R.drawable.help);
+        FSButton.getInstance().setBackgroundColor(Color.WHITE);
       }
+ ```
+ 
+ To start showing the floating button through the application, use the following line.
+ 
+ ```java
+ FSButton.getInstance().show();
+```
+ 
+ To make the floating button disppear through the application, use the following line.
+ 
+  ```java
+  FSButton.getInstance().hide();
+ ```
+ 
+Check button visibility
+ 
+  ```java
+  FSButton.getInstance().isViewAttached();
+ ```
 
-but here your activity that button start to appear in your application 
 
-    floatingShortcut.setStartActivityName(LoginActivity.class);
-
-And but here the activity appear when press in the button 
-
-    floatingShortcut.setHelpActivityName(HomeActivity.class);
-
-button icon and the background color 
-
-    floatingShortcut.setButtonIcon(R.drawable.default_user , Color.WHITE);
 
