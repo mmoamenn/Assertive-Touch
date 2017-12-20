@@ -52,7 +52,7 @@ public class FSButton implements View.OnTouchListener {
     /**
      * Single tone quick operation button
      */
-    public static void setUp(Application app) {
+    public static void setup(Application app) {
 
         synchronized (FSButton.class) {
             if (instance == null) {
