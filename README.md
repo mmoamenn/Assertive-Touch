@@ -11,12 +11,14 @@ Assertive Touch is a library that lets you create a floating button which shows 
  
  Add it in your root build.gradle at the end of repositories:
  
+ ```groovy
  	allprojects {
  		repositories {
  			...
  			maven { url 'https://jitpack.io' }
  		}
  	}
+  ```
  	
  Step 2. Add the dependency
  
@@ -53,6 +55,12 @@ public class DemoApplication extends Application {
  
   ```java
   FSButton.getInstance().hide();
+ ```
+ 
+Change Button size 
+
+```java
+  FSButton.getInstance().setSize(height,width);
  ```
  
 Check button visibility
